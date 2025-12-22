@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kizuna Dining - Contact</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts: Outfit (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <meta name="description"
+        content="Contact Kizuna Dining. Get in touch for reservations, feedback, or inquiries. View our hours and location.">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="container">
+            <h1 class="logo">Kizuna Dining</h1>
+            <nav role="navigation" aria-label="Main Navigation">
+                <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="main-menu"
+                    class="menu-toggle">
+                    <span class="sr-only">Menu</span>
+                    <span class="hamburger" aria-hidden="true"></span>
+                </button>
+                <ul id="main-menu" class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li>
+                        <a href="menu.html#cart" class="cart-btn" aria-label="Order Online">
+                            Order Online
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <section class="contact-hero">
+            <div class="container">
+                <h2>Get in Touch</h2>
+                <p>We'd love to hear from you. Reach out with questions, feedback, or reservation requests.</p>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <!-- Contact Form -->
+                    <div class="contact-form-container">
+                        <h3>Send us a Message</h3>
+                        <form id="contact-form" class="contact-form" action="#" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required aria-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required aria-required="true">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <select id="subject" name="subject">
+                                    <option value="general">General Inquiry</option>
+                                    <option value="reservation">Reservation</option>
+                                    <option value="feeback">Feedback</option>
+                                    <option value="catering">Catering</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
+                            </div>
+                            <button type="submit" class="cta-btn primary">Send Message</button>
+                        </form>
+                    </div>
+
+                    <!-- Info & Map -->
+                    <div class="contact-info-container">
+                        <div class="info-card">
+                            <h3>Contact Info</h3>
+                            <address>
+                                <p><strong>Address:</strong><br>123 Kizuna Ave<br>Toronto, ON M5V 2A2</p>
+                                <p><strong>Phone:</strong> <a href="tel:+14165550199">+1 (416) 555-0199</a></p>
+                                <p><strong>Email:</strong> <a
+                                        href="mailto:hello@kizunadining.com">hello@kizunadining.com</a></p>
+                            </address>
+                            <div class="hours-block">
+                                <h4>Hours</h4>
+                                <p>Mon - Sun: 11:00 AM - 9:00 PM</p>
+                            </div>
+                        </div>
+
+                        <!-- OpenStreetMap (Free, No API Key) -->
+                        <div class="map-container">
+                            <iframe width="100%" height="300" style="border:0;" loading="lazy"
+                                src="https://www.openstreetmap.org/export/embed.html?bbox=-79.4100,43.6400,-79.3800,43.6600&layer=mapnik&marker=43.6480,-79.3960"
+                                title="Map of Kizuna Ave (Fictional Location)">
+                            </iframe>
+                            <div style="font-size: 0.8rem; margin-top: 4px; text-align: right;">
+                                <a href="https://www.openstreetmap.org/?mlat=43.6480&mlon=-79.3960#map=16/43.6480/-79.3960"
+                                    target="_blank" rel="noopener noreferrer">View Larger Map</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo" id="contact">
+        <div class="container">
+            <h2 class="sr-only">Contact</h2>
+            <address>
+                <p>123 Kizuna Ave, Toronto, ON M5V 2A2</p>
+                <p>Phone: <a href="tel:+14165550199">+1 (416) 555-0199</a></p>
+                <p>Email: <a href="mailto:hello@kizunadining.com">hello@kizunadining.com</a></p>
+            </address>
+            <p>&copy; 2025 Kizuna Dining. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
