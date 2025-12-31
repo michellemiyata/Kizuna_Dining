@@ -516,38 +516,36 @@ footer a {
 }
 
 .filter-btn {
-    background-color: white;
-    color: var(--primary-color);
-    border: var(--border-thickness) solid var(--primary-color);
-    padding: 0.75rem 1.5rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
     font-family: 'Outfit', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 800;
-    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 1rem;
     cursor: pointer;
-    box-shadow: 4px 4px 0 0 #000;
-    transition: all 0.2s;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+    border-bottom: 2px solid transparent;
 }
 
 .filter-btn:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 0 #000;
-    background-color: var(--section-bg);
+    color: var(--primary-color);
 }
 
 .filter-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 0 #000;
+    transform: none;
+    box-shadow: none;
 }
 
 .filter-btn.active {
-    background-color: var(--primary-color);
-    color: var(--highlight-color);
-    box-shadow: 2px 2px 0 0 #333;
-    transform: translate(2px, 2px);
+    background: none;
+    color: var(--primary-color);
+    box-shadow: none;
+    transform: none;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 .filter-btn.active::before {
