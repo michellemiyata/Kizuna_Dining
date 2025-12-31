@@ -505,6 +505,16 @@ footer a {
     flex-wrap: wrap;
 }
 
+.filter-status-text {
+    text-align: center;
+    width: 100%;
+    margin-top: 1rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: bold;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
 .filter-btn {
     background-color: white;
     color: var(--primary-color);
@@ -535,6 +545,14 @@ footer a {
     color: var(--highlight-color);
     box-shadow: 2px 2px 0 0 #333;
     transform: translate(2px, 2px);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.filter-btn.active::before {
+    content: "✓";
+    font-weight: bold;
 }
 
 .filter-btn:focus-visible {
@@ -597,16 +615,63 @@ footer a {
 }
 
 /* Lang Switch Link */
-.lang-switch {
-    border: 2px solid var(--secondary-color);
-    color: var(--secondary-color) !important;
+.lang-toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Outfit', sans-serif;
     font-weight: 700;
-    padding: 0.25rem 0.5rem;
 }
 
-.lang-switch:hover {
-    background-color: var(--secondary-color);
-    color: #ffffff !important;
+.lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 400;
+    color: #888;
+    padding: 0.5rem;
+    /* Increased padding */
+    min-height: 44px;
+    /* Accessible target */
+    min-width: 44px;
+    /* Accessible target */
+    font-size: 1rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lang-btn:hover {
+    color: var(--primary-color);
+}
+
+.lang-btn.active {
+    font-weight: 800;
+    color: var(--primary-color);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.separator {
+    color: #ccc;
+    font-weight: 300;
+}
+
+/* Empty State Message */
+.empty-state-message {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--section-bg);
+    border: 2px dashed #ccc;
+    margin-top: 2rem;
+    border-radius: var(--border-radius);
+    color: #666;
+    font-style: italic;
+}
+
+.empty-state-message p {
+    margin: 0;
 }
 
 /* Cart Modal Styles */

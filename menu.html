@@ -54,17 +54,35 @@
     <main id="main-content" role="main">
         <section class="hero">
             <div class="container">
-                <h2 data-i18n="hero.title">Simple. Clear. Delicious.</h2>
-                <p data-i18n="hero.subtitle">A menu designed for easy reading and happy eating.</p>
+                <div class="lang-content-en">
+                    <h2 data-i18n="hero.title">Simple. Clear. Delicious.</h2>
+                    <p data-i18n="hero.subtitle">A menu designed for easy reading and happy eating.</p>
+                </div>
+                <div class="lang-content-jp hidden">
+                    <h2>シンプルに。わかりやすく。おいしく。</h2>
+                    <p>読みやすく、楽しく食事ができるようにデザインされたメニュー。</p>
+                </div>
 
-                <div class="filter-controls" aria-label="Menu Filters">
-                    <button class="filter-btn active" data-filter="all" aria-pressed="true">All Items</button>
-                    <button class="filter-btn" data-filter="veg" aria-pressed="false">Vegetarian</button>
-                    <button class="filter-btn" data-filter="gf" aria-pressed="false">Gluten Free</button>
+                <div class="lang-content-en">
+                    <div class="filter-controls" aria-label="Menu Filters">
+                        <button class="filter-btn active" data-filter="all" aria-pressed="true">All Items</button>
+                        <button class="filter-btn" data-filter="veg" aria-pressed="false">Vegetarian</button>
+                        <button class="filter-btn" data-filter="gf" aria-pressed="false">Gluten Free</button>
+                    </div>
+                    <p id="filter-status-en" class="filter-status-text">Showing All Items</p>
+                </div>
+                <div class="lang-content-jp hidden">
+                    <div class="filter-controls" aria-label="メニューフィルター">
+                        <button class="filter-btn active" data-filter="all" aria-pressed="true">すべて</button>
+                        <button class="filter-btn" data-filter="veg" aria-pressed="false">ベジタリアン</button>
+                        <button class="filter-btn" data-filter="gf" aria-pressed="false">グルテンフリー</button>
+                    </div>
+                    <p id="filter-status-jp" class="filter-status-text">すべての商品を表示中</p>
                 </div>
 
                 <div id="no-results-message" class="empty-state-message hidden" aria-live="polite">
-                    <p>No items match your filters. Try removing a filter.</p>
+                    <p class="lang-content-en">No items match your filters. Try removing a filter.</p>
+                    <p class="lang-content-jp hidden">条件に一致する商品がありません。フィルターを解除してみてください。</p>
                 </div>
             </div>
         </section>

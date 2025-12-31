@@ -204,38 +204,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuItems = document.querySelectorAll('.menu-item');
     const noResultsMsg = document.getElementById('no-results-message');
     // Create status element if it doesn't exist
-    let filterStatus = document.getElementById('filter-status');
-    if (!filterStatus && filterButtons.length > 0) {
-        const controls = document.querySelector('.filter-controls');
-        if (controls) {
-            filterStatus = document.createElement('p');
-            filterStatus.id = 'filter-status';
-            filterStatus.setAttribute('aria-live', 'polite');
-            controls.after(filterStatus);
-        }
-    }
+
 
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Update active state
-            filterButtons.forEach(b => {
-                b.classList.remove('active');
-                b.setAttribute('aria-pressed', 'false');
-            });
-            btn.classList.add('active');
-            btn.setAttribute('aria-pressed', 'true');
-
             const filterValue = btn.getAttribute('data-filter');
-            let visibleCount = 0;
 
-            // Update Status Text
-            if (filterStatus) {
-                if (filterValue === 'all') {
-                    filterStatus.textContent = "Showing All Items";
+            // 1. Sync Active State across EN and JP buttons
+            filterButtons.forEach(b => {
+                if (b.getAttribute('data-filter') === filterValue) {
+                    b.classList.add('active');
+                    b.setAttribute('aria-pressed', 'true');
                 } else {
-                    filterStatus.textContent = `Showing: ${btn.textContent}`;
+                    b.classList.remove('active');
+                    b.setAttribute('aria-pressed', 'false');
                 }
+            });
+
+            // 2. Update Status Text (Bilingual)
+            const statusEn = document.getElementById('filter-status-en');
+            const statusJp = document.getElementById('filter-status-jp');
+
+            // Find specific buttons to get their label text
+            const enBtn = document.querySelector(`.lang-content-en .filter-btn[data-filter="${filterValue}"]`);
+            const jpBtn = document.querySelector(`.lang-content-jp .filter-btn[data-filter="${filterValue}"]`);
+
+            if (statusEn && enBtn) {
+                statusEn.textContent = filterValue === 'all' ? "Showing All Items" : `Showing: ${enBtn.textContent}`;
             }
+            if (statusJp && jpBtn) {
+                statusJp.textContent = filterValue === 'all' ? "すべての商品を表示中" : `表示中: ${jpBtn.textContent}`;
+            }
+
+            let visibleCount = 0;
 
             if (menuItems.length > 0) {
                 menuItems.forEach(item => {
