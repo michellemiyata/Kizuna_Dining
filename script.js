@@ -153,7 +153,127 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Add to Cart
+    // Updated Language Switcher Logic (Generic)
+    // Matches elements with class .lang-btn and toggles elements with class .lang-content-en / .lang-content-jp
+    const langButtons = document.querySelectorAll('.lang-btn');
+    const htmlTag = document.documentElement;
+
+    function setLanguage(lang) {
+        // Update Buttons
+        langButtons.forEach(btn => {
+            if (btn.getAttribute('data-lang') === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Update Content
+        const enElements = document.querySelectorAll('.lang-content-en, #menu-en');
+        const jpElements = document.querySelectorAll('.lang-content-jp, #menu-jp');
+
+        if (lang === 'en') {
+            enElements.forEach(el => el.classList.remove('hidden'));
+            jpElements.forEach(el => el.classList.add('hidden'));
+            htmlTag.setAttribute('lang', 'en');
+            localStorage.setItem('kizuna_lang', 'en');
+        } else {
+            enElements.forEach(el => el.classList.add('hidden'));
+            jpElements.forEach(el => el.classList.remove('hidden'));
+            htmlTag.setAttribute('lang', 'ja');
+            localStorage.setItem('kizuna_lang', 'jp');
+        }
+    }
+
+    // Init Language from LocalStorage or Default
+    const savedLang = localStorage.getItem('kizuna_lang') || 'en';
+    setLanguage(savedLang);
+
+    // Event Listeners for Lang Buttons
+    if (langButtons.length > 0) {
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                setLanguage(lang);
+            });
+        });
+    }
+
+    // Updated Menu Filtering Logic (with Empty State & Active Text)
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const menuItems = document.querySelectorAll('.menu-item');
+    const noResultsMsg = document.getElementById('no-results-message');
+    // Create status element if it doesn't exist
+    let filterStatus = document.getElementById('filter-status');
+    if (!filterStatus && filterButtons.length > 0) {
+        const controls = document.querySelector('.filter-controls');
+        if (controls) {
+            filterStatus = document.createElement('p');
+            filterStatus.id = 'filter-status';
+            filterStatus.setAttribute('aria-live', 'polite');
+            controls.after(filterStatus);
+        }
+    }
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active state
+            filterButtons.forEach(b => {
+                b.classList.remove('active');
+                b.setAttribute('aria-pressed', 'false');
+            });
+            btn.classList.add('active');
+            btn.setAttribute('aria-pressed', 'true');
+
+            const filterValue = btn.getAttribute('data-filter');
+            let visibleCount = 0;
+
+            // Update Status Text
+            if (filterStatus) {
+                if (filterValue === 'all') {
+                    filterStatus.textContent = "Showing All Items";
+                } else {
+                    filterStatus.textContent = `Showing: ${btn.textContent}`;
+                }
+            }
+
+            if (menuItems.length > 0) {
+                menuItems.forEach(item => {
+                    let isMatch = false;
+
+                    if (filterValue === 'all') {
+                        isMatch = true;
+                    } else {
+                        const tagsInfo = item.querySelector('.dietary-tags');
+                        if (tagsInfo) {
+                            const hasTag = tagsInfo.querySelector(`.tag.${filterValue}`);
+                            if (hasTag) isMatch = true;
+                        }
+                    }
+
+                    if (isMatch) {
+                        item.classList.remove('hidden');
+                        visibleCount++;
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Show/Hide Empty State
+            if (visibleCount === 0) {
+                if (noResultsMsg) noResultsMsg.classList.remove('hidden');
+            } else {
+                if (noResultsMsg) noResultsMsg.classList.add('hidden');
+            }
+
+            // Announce filter change
+            const announcement = filterValue === 'all' ? "Showing all items" : `Showing ${btn.textContent} items`;
+            if (liveRegion) liveRegion.textContent = announcement;
+        });
+    });
+
+    // Add to Cart Feedback
     if (addToCartForm) {
         addToCartForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -173,8 +293,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const message = `Added ${qty} ${currentItem.title} to order. Total items: ${getConfiguredCartCount()}`;
             liveRegion.textContent = message;
 
-            // Close modal
-            modal.close();
+            // Visual Feedback on Button
+            const submitBtn = addToCartForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML = 'Added ✓ <span class="jp-modal">追加しました ✓</span>';
+            submitBtn.classList.add('success-feedback'); // Optional: add a class for color change if desired
+
+            setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.classList.remove('success-feedback');
+                modal.close(); // Close modal after short delay so user sees feedback
+            }, 1000);
         });
     }
 
@@ -289,74 +419,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Menu Filtering Logic
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const menuItems = document.querySelectorAll('.menu-item');
 
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Update active state
-            filterButtons.forEach(b => {
-                b.classList.remove('active');
-                b.setAttribute('aria-pressed', 'false');
-            });
-            btn.classList.add('active');
-            btn.setAttribute('aria-pressed', 'true');
 
-            const filterValue = btn.getAttribute('data-filter');
 
-            if (menuItems.length > 0) {
-                menuItems.forEach(item => {
-                    if (filterValue === 'all') {
-                        item.classList.remove('hidden');
-                        return;
-                    }
-
-                    const tagsInfo = item.querySelector('.dietary-tags');
-                    // If no tags exist and filter is not 'all', hide it
-                    if (!tagsInfo) {
-                        item.classList.add('hidden');
-                        return;
-                    }
-
-                    // Check if item has the requested tag class (e.g., .veg or .gf)
-                    const hasTag = tagsInfo.querySelector(`.tag.${filterValue}`);
-
-                    if (hasTag) {
-                        item.classList.remove('hidden');
-                    } else {
-                        item.classList.add('hidden');
-                    }
-                });
-            }
-
-            // Announce filter change to screen readers (standard feedback via live region)
-            const announcement = filterValue === 'all' ? "Showing all items" : `Showing ${btn.textContent} items`;
-            if (liveRegion) liveRegion.textContent = announcement;
-        });
-    });
-
-    // Language Switcher Logic
-    const langSelect = document.getElementById('language-select');
-    const menuEn = document.getElementById('menu-en');
-    const menuJp = document.getElementById('menu-jp');
-    const htmlTag = document.documentElement;
-
-    if (langSelect && menuEn && menuJp) {
-        langSelect.addEventListener('change', (e) => {
-            const lang = e.target.value;
-
-            if (lang === 'en') {
-                menuEn.classList.remove('hidden');
-                menuJp.classList.add('hidden');
-                htmlTag.setAttribute('lang', 'en');
-            } else {
-                menuEn.classList.add('hidden');
-                menuJp.classList.remove('hidden');
-                htmlTag.setAttribute('lang', 'ja');
-            }
-        });
-    }
 });
 
 
