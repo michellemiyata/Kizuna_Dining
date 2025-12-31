@@ -34,6 +34,13 @@
                     <li><a href="menu.html">Menu</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li>
+                         <div class="lang-toggle-container">
+                            <button class="lang-btn active" data-lang="en">EN</button>
+                            <span class="separator" aria-hidden="true">|</span>
+                            <button class="lang-btn" data-lang="jp">日本語</button>
+                        </div>
+                    </li>
+                    <li>
                         <a href="menu.html#cart" class="cart-btn" aria-label="Order Online">
                             Order Online
                         </a>
@@ -44,52 +51,98 @@
     </header>
 
     <main id="main-content" role="main">
-        <section class="hero landing-hero">
-            <div class="container">
-                <h2>A Seat at the Table for Everyone.</h2>
-                <p>Authentic Japanese flavors, served in a space designed for your comfort and joy.</p>
-                <div class="hero-actions">
-                    <a href="menu.html" class="cta-btn primary">View Menu</a>
-                    <a href="menu.html" class="cta-btn secondary">Order Online</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="section services-section">
-            <div class="container">
-                <h2>Designed for You</h2>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <h3>Sensory-Friendly Dine-In</h3>
-                        <p>Our dining room features wide paths, acoustic dampening for a quieter meal, and adjustable
-                            lighting. We believe comfort is the first ingredient.</p>
-                        <a href="menu.html" class="text-link">Explore the Menu &rarr;</a>
-                    </div>
-                    <div class="service-card">
-                        <h3>Accessible Delivery</h3>
-                        <p>Clear packaging, easy-to-read labels, and a seamless online ordering experience compatible
-                            with screen readers.</p>
-                        <a href="menu.html" class="text-link">Order Comfort Food &rarr;</a>
+        <!-- English Content -->
+        <div class="lang-content-en">
+            <section class="hero landing-hero">
+                <div class="container">
+                    <h2>A Seat at the Table for Everyone.</h2>
+                    <p>Authentic Japanese flavors, served in a space designed for your comfort and joy.</p>
+                    <div class="hero-actions">
+                        <a href="menu.html" class="cta-btn primary">View Menu</a>
+                        <a href="menu.html" class="cta-btn secondary">Order Online</a>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="about" class="section about-section">
-            <div class="container">
-                <h2>About Chef Hiro</h2>
-                <div class="about-content">
-                    <p><strong>"True hospitality means anticipating a need before it's spoken."</strong></p>
-                    <p>Born in Osaka, Chef Hiro learned that food is a universal language. But when he moved to Toronto,
-                        he noticed that too many "authentic" spots felt crowded or inaccessible to some of his friends.
-                    </p>
-                    <p>He created Kizuna Dining with a simple mission: <strong>Omotenashi (hospitality) without
-                            barriers.</strong> Whether it's our wheelchair-friendly layout, neurodiverse-affirming quiet
-                        zones, or this very screen-reader-optimized menu, every detail is a love letter to our
-                        community. You are welcome here.</p>
+            <section id="services" class="section services-section">
+                <div class="container">
+                    <h2>Designed for You</h2>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <h3>Sensory-Friendly Dine-In</h3>
+                            <p>Our dining room features wide paths, acoustic dampening for a quieter meal, and adjustable
+                                lighting. We believe comfort is the first ingredient.</p>
+                            <a href="menu.html" class="text-link">Explore the Menu &rarr;</a>
+                        </div>
+                        <div class="service-card">
+                            <h3>Accessible Delivery</h3>
+                            <p>Clear packaging, easy-to-read labels, and a seamless online ordering experience compatible
+                                with screen readers.</p>
+                            <a href="menu.html" class="text-link">Order Comfort Food &rarr;</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section id="about" class="section about-section">
+                <div class="container">
+                    <h2>About Chef Hiro</h2>
+                    <div class="about-content">
+                        <p><strong>"True hospitality means anticipating a need before it's spoken."</strong></p>
+                        <p>Born in Osaka, Chef Hiro learned that food is a universal language. But when he moved to Toronto,
+                            he noticed that too many "authentic" spots felt crowded or inaccessible to some of his friends.
+                        </p>
+                        <p>He created Kizuna Dining with a simple mission: <strong>Omotenashi (hospitality) without
+                                barriers.</strong> Whether it's our wheelchair-friendly layout, neurodiverse-affirming quiet
+                            zones, or this very screen-reader-optimized menu, every detail is a love letter to our
+                            community. You are welcome here.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Japanese Content -->
+        <div class="lang-content-jp hidden">
+             <section class="hero landing-hero">
+                <div class="container">
+                    <h2>誰にでも、居場所がある食卓を。</h2>
+                    <p>本格的な日本の味を、すべての人が心地よく楽しめる空間で。</p>
+                    <div class="hero-actions">
+                        <a href="menu.html" class="cta-btn primary">メニューを見る</a>
+                        <a href="menu.html" class="cta-btn secondary">オンライン注文</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="services-jp" class="section services-section">
+                <div class="container">
+                    <h2>あなたのためにデザインされた空間</h2>
+                    <div class="services-grid">
+                        <div class="service-card">
+                            <h3>静かで心地よい店内</h3>
+                            <p>広い通路、音を抑える設計、調整可能な照明など、誰もがリラックスして食事を楽しめる環境を整えています。</p>
+                            <a href="menu.html" class="text-link">メニューを見る &rarr;</a>
+                        </div>
+                        <div class="service-card">
+                            <h3>バリアフリーなデリバリー</h3>
+                            <p>わかりやすいパッケージ、読みやすいラベル、そしてスクリーンリーダー対応の注文サイトをご用意しています。</p>
+                            <a href="menu.html" class="text-link">注文する &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about-jp" class="section about-section">
+                <div class="container">
+                    <h2>シェフ・ヒロについて</h2>
+                    <div class="about-content">
+                        <p><strong>「真のおもてなしとは、言葉にされる前にニーズを察すること」</strong></p>
+                        <p>大阪出身のシェフ・ヒロは、食が世界共通の言語であることを学びました。しかしトロントに移り住んだとき、多くの「本格的な」店が、彼の友人たちにとって窮屈で利用しにくいものであることに気づきました。</p>
+                        <p>彼はシンプルな使命を持ってKizuna Diningを立ち上げました。それは<strong>「バリアのないおもてなし」</strong>です。車椅子で入れるレイアウト、静かに過ごせるスペース、そしてこの読み上げ対応メニューまで、すべての細部がコミュニティへのラブレターです。ここはあなたの居場所です。</p>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer role="contentinfo" id="contact">
