@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kizuna Dining - Home</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Google Fonts: Outfit (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Outfit:wght@700;800&display=swap"
+        rel="stylesheet">
+
+    <meta name="description"
+        content="Accessible dining menu for Kizuna Dining. Browse our appetizers, mains, and desserts with ease.">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <header role="banner">
+        <div class="container">
+            <h1 class="logo">Kizuna Dining</h1>
+            <nav role="navigation" aria-label="Main Navigation">
+                <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="main-menu"
+                    class="menu-toggle">
+                    <span class="sr-only">Menu</span>
+                    <span class="hamburger" aria-hidden="true"></span>
+                </button>
+                <ul id="main-menu" class="nav-list">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li>
+                        <a href="menu.html#cart" class="cart-btn" aria-label="Order Online">
+                            Order Online
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content" role="main">
+        <section class="hero landing-hero">
+            <div class="container">
+                <h2>A Seat at the Table for Everyone.</h2>
+                <p>Authentic Japanese flavors, served in a space designed for your comfort and joy.</p>
+                <div class="hero-actions">
+                    <a href="menu.html" class="cta-btn primary">View Menu</a>
+                    <a href="menu.html" class="cta-btn secondary">Order Online</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section services-section">
+            <div class="container">
+                <h2>Designed for You</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Sensory-Friendly Dine-In</h3>
+                        <p>Our dining room features wide paths, acoustic dampening for a quieter meal, and adjustable
+                            lighting. We believe comfort is the first ingredient.</p>
+                        <a href="menu.html" class="text-link">Explore the Menu &rarr;</a>
+                    </div>
+                    <div class="service-card">
+                        <h3>Accessible Delivery</h3>
+                        <p>Clear packaging, easy-to-read labels, and a seamless online ordering experience compatible
+                            with screen readers.</p>
+                        <a href="menu.html" class="text-link">Order Comfort Food &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section about-section">
+            <div class="container">
+                <h2>About Chef Hiro</h2>
+                <div class="about-content">
+                    <p><strong>"True hospitality means anticipating a need before it's spoken."</strong></p>
+                    <p>Born in Osaka, Chef Hiro learned that food is a universal language. But when he moved to Toronto,
+                        he noticed that too many "authentic" spots felt crowded or inaccessible to some of his friends.
+                    </p>
+                    <p>He created Kizuna Dining with a simple mission: <strong>Omotenashi (hospitality) without
+                            barriers.</strong> Whether it's our wheelchair-friendly layout, neurodiverse-affirming quiet
+                        zones, or this very screen-reader-optimized menu, every detail is a love letter to our
+                        community. You are welcome here.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer role="contentinfo" id="contact">
+        <div class="container">
+            <h2 class="sr-only">Contact</h2>
+            <address>
+                <p>123 Kizuna Ave, Toronto, ON M5V 2A2</p>
+                <p>Phone: <a href="tel:+14165550199">+1 (416) 555-0199</a></p>
+                <p>Email: <a href="mailto:hello@kizunadining.com">hello@kizunadining.com</a></p>
+            </address>
+            <p>&copy; 2025 Kizuna Dining. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Item Details Modal -->
+    <dialog id="item-details-modal" class="modal">
+        <div class="modal-content">
+            <button id="close-modal" class="close-button" aria-label="Close details">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div id="modal-body">
+                <img id="modal-image" src="" alt="">
+                <h2 id="modal-title"></h2>
+                <p id="modal-description"></p>
+                <p id="modal-price"></p>
+                <ul id="modal-tags" class="dietary-tags"></ul>
+
+                <form id="add-to-cart-form" class="cart-form">
+                    <label for="quantity" class="qty-label">Quantity: <span class="jp-modal">数量:</span></label>
+                    <div class="qty-controls">
+                        <button type="button" id="qty-minus" aria-label="Decrease quantity">-</button>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="10">
+                        <button type="button" id="qty-plus" aria-label="Increase quantity">+</button>
+                    </div>
+                    <button type="submit" class="add-btn">Add to Order <span class="jp-modal">注文に追加</span></button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- Cart Modal -->
+    <dialog id="cart-modal" class="modal">
+        <div class="modal-content">
+            <button id="close-cart-modal" class="close-button" aria-label="Close cart">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <h2>Your Order <span class="jp-modal">ご注文内容</span></h2>
+            <div id="cart-items-container">
+                <!-- Cart items will be injected here -->
+                <p class="empty-cart-msg">Your cart is empty.</p>
+            </div>
+            <div class="cart-total">
+                <span>Total <span class="jp-modal">合計</span>:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button id="checkout-btn" class="add-btn">Checkout <span class="jp-modal">会計する</span></button>
+        </div>
+    </dialog>
+
+    <div class="sr-only" aria-live="polite" id="cart-live-region"></div>
+
+    <div class="sr-only" aria-live="polite" id="cart-live-region"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
