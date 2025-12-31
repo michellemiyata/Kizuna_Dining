@@ -230,10 +230,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const jpBtn = document.querySelector(`.lang-content-jp .filter-btn[data-filter="${filterValue}"]`);
 
             if (statusEn && enBtn) {
-                statusEn.textContent = filterValue === 'all' ? "Showing All Items" : `Showing: ${enBtn.textContent}`;
+                statusEn.textContent = filterValue === 'all' ? "" : `Showing: ${enBtn.textContent}`;
             }
             if (statusJp && jpBtn) {
-                statusJp.textContent = filterValue === 'all' ? "すべての商品を表示中" : `表示中: ${jpBtn.textContent}`;
+                statusJp.textContent = filterValue === 'all' ? "" : `表示中: ${jpBtn.textContent}`;
             }
 
             let visibleCount = 0;
